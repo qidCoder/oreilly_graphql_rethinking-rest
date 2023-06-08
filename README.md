@@ -5,7 +5,7 @@
 Requires a modern browser capable of running ES6 JavaScript
 
 ## Node server
-Requires Node >= 8.9
+Requires Node >= 8.9 
 
 ### Before the class
 
