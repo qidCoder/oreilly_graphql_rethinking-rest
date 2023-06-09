@@ -24,7 +24,19 @@ fragment commitFragment on Repository {
 }
 `;
 
-let queryRepoList;
+const queryRepoList =
+    `query ($userName: String!){
+        user (login: $userName) {
+            name
+            repositories (first: 12){
+                totalCount
+                nodes{
+                    name
+                }
+            }
+        }
+    }`
+;
 
 let mutationAddStar;
 
@@ -64,10 +76,10 @@ function starHandler(element) {
 $(window).ready(function() {
   // GET NAME AND REPOSITORIES FOR VIEWER
     gqlRequest(
-        "{viewer{name}}",
-        {},
+        queryRepoList,
+        {userName: "qidCoder"},
         (data) => {
-            $('h2').text(`hello ${data.viewer.name}`);
+            $('h2').text(`hello ${data.user.name}`);
         }
     );
 
